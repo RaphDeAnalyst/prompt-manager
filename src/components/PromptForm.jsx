@@ -4,7 +4,11 @@ export default function PromptForm({ initialPrompt, onSave, onCancel }) {
   const [title, setTitle] = useState(initialPrompt?.title || '');
   const [content, setContent] = useState(initialPrompt?.content || '');
   const [category, setCategory] = useState(initialPrompt?.category || 'General');
-  const [tags, setTags] = useState(initialPrompt?.tags?.join(', ') || '');
+  const [tags, setTags] = useState(
+    initialPrompt?.tags
+      ? (typeof initialPrompt.tags === 'string' ? initialPrompt.tags : initialPrompt.tags.join(', '))
+      : ''
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

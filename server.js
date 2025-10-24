@@ -1,9 +1,25 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import fs from 'fs';
 
 // Load environment variables
 dotenv.config({ path: '.env.local' });
+
+// Create a log file
+const logFile = fs.createWriteStream('server.log', { flags: 'a' });
+const originalLog = console.log;
+const originalError = console.error;
+
+console.log = function(...args) {
+  originalLog.apply(console, args);
+  logFile.write(args.join(' ') + '\n');
+};
+
+console.error = function(...args) {
+  originalError.apply(console, args);
+  logFile.write('[ERROR] ' + args.join(' ') + '\n');
+};
 
 // Import API route handlers
 import registerHandler from './api/auth/register.js';

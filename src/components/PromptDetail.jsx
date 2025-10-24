@@ -36,11 +36,11 @@ export default function PromptDetail({ prompt, onEdit, onDelete, onCopy }) {
         <div className="prompt-content">{prompt.content}</div>
       </section>
 
-      {prompt.tags && prompt.tags.length > 0 && (
+      {prompt.tags && (typeof prompt.tags === 'string' ? prompt.tags.trim() : prompt.tags).length > 0 && (
         <section className="section">
           <div className="section-title">Tags</div>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            {prompt.tags.map((tag, i) => (
+            {(typeof prompt.tags === 'string' ? prompt.tags.split(',').map(t => t.trim()) : prompt.tags).map((tag, i) => (
               <span
                 key={i}
                 style={{

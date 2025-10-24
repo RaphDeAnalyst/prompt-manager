@@ -43,6 +43,7 @@ export default function App() {
   const selectedPrompt = prompts.find(p => p.id === selectedId);
 
   const handleNewPrompt = () => {
+    setSelectedId(null);
     setShowForm(true);
   };
 
