@@ -41,3 +41,5 @@ Thumbs.db
 
 # Misc
 nul
+
+/src/generated/prisma

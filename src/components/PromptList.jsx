@@ -22,39 +22,95 @@ export default function PromptList({ prompts, selectedId, onSelectPrompt, onNewP
   };
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <FileText size={20} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />
+    <div style={{
+      padding: '20px',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
+      {/* Header */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        marginBottom: '24px',
+        fontSize: '18px',
+        fontWeight: '700',
+        color: '#111827',
+      }}>
+        <FileText size={20} color="#1877F2" />
         Prompts
       </div>
-      <button className="new-prompt-btn" onClick={onNewPrompt}>
-        + New Prompt
-      </button>
+
+      {/* Search */}
       <input
         type="text"
         placeholder="Search prompts..."
-        className="search-box"
         value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
+        style={{
+          width: '100%',
+          padding: '8px 12px',
+          border: '1px solid #E5E7EB',
+          borderRadius: '8px',
+          marginBottom: '16px',
+          fontSize: '13px',
+          boxSizing: 'border-box',
+        }}
       />
-      <ul className="prompts-list">
+
+      {/* Prompts List */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         {filteredPrompts.length === 0 ? (
-          <li style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '20px 0' }}>
+          <div style={{ textAlign: 'center', color: '#9CA3AF', padding: '20px 0', fontSize: '13px' }}>
             No prompts found
-          </li>
+          </div>
         ) : (
           filteredPrompts.map(prompt => (
-            <li
+            <div
               key={prompt.id}
-              className={`prompt-item ${selectedId === prompt.id ? 'active' : ''}`}
-              onClick={() => onSelectPrompt(prompt.id)}
+              onClick={() => onSelectPrompt(prompt)}
+              style={{
+                padding: '12px 16px',
+                cursor: 'pointer',
+                borderRadius: '8px',
+                transition: 'all 0.2s ease',
+                backgroundColor: selectedId === prompt.id ? '#EBF5FF' : '#FFFFFF',
+                borderLeft: '3px solid ' + (selectedId === prompt.id ? '#1877F2' : 'transparent'),
+                border: selectedId === prompt.id ? '1px solid #1877F2' : '1px solid #E5E7EB',
+                boxShadow: selectedId === prompt.id ? '0 1px 2px rgba(24, 119, 242, 0.1)' : 'none',
+              }}
+              onMouseEnter={(e) => {
+                if (selectedId !== prompt.id) {
+                  e.currentTarget.style.backgroundColor = '#F9FAFB';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (selectedId !== prompt.id) {
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                }
+              }}
             >
-              <div className="prompt-item-title">{prompt.title || 'Untitled'}</div>
-              <div className="prompt-item-time">{formatDate(prompt.createdAt)}</div>
-            </li>
+              <div style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: selectedId === prompt.id ? '#1877F2' : '#111827',
+                marginBottom: '4px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                {prompt.title || 'Untitled'}
+              </div>
+              <div style={{
+                fontSize: '12px',
+                color: '#9CA3AF',
+              }}>
+                {formatDate(prompt.created_at)}
+              </div>
+            </div>
           ))
         )}
-      </ul>
-    </aside>
+      </div>
+    </div>
   );
 }

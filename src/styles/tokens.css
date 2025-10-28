@@ -8,17 +8,17 @@
   /* ===== SEMANTIC COLOR TOKENS ===== */
 
   /* Primary - Main actions and interactive elements */
-  --color-primary-50: #EEF2FF;
-  --color-primary-100: #E0E7FF;
-  --color-primary-200: #C7D2FE;
-  --color-primary-300: #A5B4FC;
-  --color-primary-400: #818CF8;
-  --color-primary: #5B5FFF;        /* Main color - Professional blue */
-  --color-primary-600: #4F46E5;
-  --color-primary-700: #4338CA;
-  --color-primary-800: #3730A3;
-  --color-primary-900: #312E81;
-  --color-primary-dark: #3730A3;   /* For dark backgrounds */
+  --color-primary-50: #EBF5FF;
+  --color-primary-100: #DBF0FF;
+  --color-primary-200: #B8DFFF;
+  --color-primary-300: #6DAFFF;
+  --color-primary-400: #4A9FFF;
+  --color-primary: #1877F2;        /* Meta Blue - Strategic accent */
+  --color-primary-600: #166FE5;
+  --color-primary-700: #1558C8;
+  --color-primary-800: #0A3F9A;
+  --color-primary-900: #032A70;
+  --color-primary-dark: #0A3F9A;   /* For dark backgrounds */
 
   /* Neutral/Gray scale - Text, borders, backgrounds */
   --color-neutral-50: #FAFAFA;
