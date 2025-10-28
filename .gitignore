@@ -39,6 +39,64 @@ Thumbs.db
 .playwright-mcp/
 .claude/
 
+# Test files and results
+test-*.spec.js
+test-results/
+test-screenshots/
+test-screenshots-*/
+playwright-report/
+
+# Documentation and artifacts from development
+ACTION_PLAN.md
+ARCHITECTURE_EXPLAINED.md
+AUDIT_*.md
+AUTH_UX_*.md
+BEFORE_AFTER_COMPARISON.md
+CHEAT_SHEET.md
+COMPREHENSIVE_*.md
+DASHBOARD_LAYOUT_*.md
+DEPLOYMENT_GUIDE.md
+DOCUMENTATION_SUMMARY.txt
+FINAL_*.md
+HUGGINGFACE_*.md
+IMPLEMENTATION_CHECKLIST.md
+IMPORT_*.txt
+INTERACTIVE_TEST_REPORT.md
+MODEL_RECOMMENDATION_SUMMARY.txt
+NEXT_STEPS.md
+OLLAMA_*.md
+PRODUCTION_CHECKLIST.md
+PROJECT_SCOPE.md
+Plan.md
+QUICK_SETUP_REFERENCE.md
+README_*.md
+RECOMMENDED_*.md
+SETUP_DECISION_TREE.md
+START_HERE.md
+TESTING_VERIFICATION.md
+TOGETHER_AI_*.md
+TOKEN_VS_API_*.md
+UX_IMPROVEMENTS_GUIDE.md
+VISUAL_SUMMARY.txt
+WORLD_CLASS_DASHBOARD_DESIGN.md
+
+# Screenshots and demos
+*.png
+*.jpg
+*.jpeg
+
+# Development scripts
+compare-pages.mjs
+create_test_prompts.sh
+insert_prompts.js
+insert_prompts.mjs
+take_screenshots.js
+test-hf-token.js
+
+# Feature branch files
+newfeatures.md
+newfeatures2.md
+
 # Misc
 nul
 
