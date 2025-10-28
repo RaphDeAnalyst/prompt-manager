@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [prompts, setPrompts] = useState([]);
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const [aiOutput, setAiOutput] = useState("");
+  const [optimizationOutput, setOptimizationOutput] = useState(null);
   const [tokensUsed, setTokensUsed] = useState(0);
   const [usage, setUsage] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
@@ -78,6 +79,7 @@ export default function Dashboard() {
 
     setIsRunning(true);
     setAiOutput("");
+    setOptimizationOutput(null);
 
     try {
       const res = await fetch("/api/ai/run-prompt", {
@@ -150,24 +152,12 @@ export default function Dashboard() {
       const data = await res.json();
 
       if (data.success) {
-        // Format output in a user-friendly way
-        let formattedOutput = "✨ OPTIMIZED PROMPT\n";
-        formattedOutput += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-        formattedOutput += data.improved_prompt;
-        formattedOutput += "\n\n";
-        formattedOutput += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-        formattedOutput += "📝 KEY IMPROVEMENTS\n";
-        formattedOutput += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-
-        if (Array.isArray(data.improvement_notes) && data.improvement_notes.length > 0) {
-          data.improvement_notes.forEach((note, index) => {
-            formattedOutput += `${index + 1}. ${note}\n\n`;
-          });
-        } else {
-          formattedOutput += "✓ Prompt has been optimized for clarity and effectiveness\n";
-        }
-
-        setAiOutput(formattedOutput);
+        // Store optimization output separately - optimized prompt and improvements in different containers
+        setOptimizationOutput({
+          improved_prompt: data.improved_prompt,
+          improvement_notes: data.improvement_notes,
+        });
+        setAiOutput(""); // Clear regular output when showing optimization
         setTokensUsed(data.tokens_used);
         fetchUsage();
         showSuccess("Prompt optimized successfully!");
@@ -435,8 +425,10 @@ export default function Dashboard() {
                   <div style={{ flex: 1, overflowY: 'auto' }}>
                     <AIOutputPanel
                       output={aiOutput}
+                      optimizationOutput={optimizationOutput}
                       tokensUsed={tokensUsed}
                       isLoading={isRunning}
+                      isOptimizing={isOptimizing}
                     />
                   </div>
                 </>
